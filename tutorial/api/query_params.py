@@ -26,7 +26,11 @@ def search_shawshank(innocent: bool = False):
     return {"innocent": innocent}
 
 
-@router.get("/concubines/", summary="Query parameters with additional validation")
+@router.get(
+    "/concubines/",
+    summary="Query parameters with additional validation",
+    tags=["Validation"],
+)
 def search_concubines(
     hh: Optional[str] = Query(
         None,
