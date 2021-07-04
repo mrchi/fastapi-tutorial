@@ -23,12 +23,12 @@ def read_user_zero():
     return {"user_id": "Zero, the BOSS."}
 
 
-@router.get("/users/{user_id}", summary="Path parameter with types")
+@router.get("/users/{user_id}", summary="Path parameter with type hint")
 def read_user(user_id: int):
     return {"user_id": user_id}
 
 
-@router.get("/webframeworks/{framework}", summary="Path parameter with Enum class type")
+@router.get("/webframeworks/{framework}", summary="Path parameter of Enum class type")
 def get_webframework(framework: WebFramework):
     return {
         "framework": framework,
@@ -40,3 +40,8 @@ def get_webframework(framework: WebFramework):
 @router.get("/files/{file_path:path}", summary="Path parameter containing a path")
 def read_file(file_path: str):
     return {"file_path": file_path}
+
+
+@router.get("/users/{user_id}/items/{item_id}", summary="Multiple path parameters")
+def get_user_items(user_id: int, item_id: int):
+    return {"user_id": user_id, "item_id": item_id}
