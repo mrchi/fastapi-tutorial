@@ -58,7 +58,7 @@ def get_item_detail(
 
 @router.get(
     "/interstellar/{ts_int}/{ts_float}",
-    summary="Path parameters with additional validation",
+    summary="Path parameter with additional validation",
     tags=["Validation"],
 )
 def get_interstellar_timestamp(
