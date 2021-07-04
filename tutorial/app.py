@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 
-from tutorial.api import path_params
+from tutorial.api import path_params, query_params
 
 app = FastAPI(
     title="FastAPI Tutorial",
@@ -13,9 +13,9 @@ app = FastAPI(
 )
 
 app.include_router(path_params.router, prefix="/pathparams", tags=["Path Params"])
+app.include_router(query_params.router, prefix="/queryparams", tags=["Query Params"])
 
 
-@app.get("/", tags=["Index"])
+@app.get("/", tags=["Index"], summary="Hello, world!")
 async def index():
-    "Hello, world!"
     return {"hello": "world"}
