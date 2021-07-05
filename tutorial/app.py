@@ -2,7 +2,13 @@
 
 from fastapi import FastAPI
 
-from tutorial.api import path_params, query_params, request_body, example_declaration
+from tutorial.api import (
+    path_params,
+    query_params,
+    request_body,
+    example_declaration,
+    validation,
+)
 
 app = FastAPI(
     title="FastAPI Tutorial",
@@ -26,3 +32,4 @@ app.include_router(
     prefix="/example",
     tags=["Example Declaration"],
 )
+app.include_router(validation.router, prefix="/validation", tags=["Validation"])
