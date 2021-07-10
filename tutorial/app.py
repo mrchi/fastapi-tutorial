@@ -9,6 +9,7 @@ from tutorial.api import (
     example_declaration,
     validation,
     header_params,
+    response_model,
 )
 
 app = FastAPI(
@@ -35,3 +36,6 @@ app.include_router(
 )
 app.include_router(validation.router, prefix="/validation", tags=["Validation"])
 app.include_router(header_params.router, prefix="/header", tags=["Header Params"])
+app.include_router(
+    response_model.router, prefix="/responsemodel", tags=["Response Model"]
+)
