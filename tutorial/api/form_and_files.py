@@ -43,7 +43,7 @@ def create_multiple_upload_files(files: list[UploadFile] = File(...)):
 @router.post(
     "/thelionking/",
     summary="Request form and files",
-    description="Need to declare File first!",
+    description="Need to declare `File` parameters before `Form` parameters!",
 )
 def the_lion_king(
     file1: bytes = File(...),
