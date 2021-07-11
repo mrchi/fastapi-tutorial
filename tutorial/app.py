@@ -7,10 +7,12 @@ from tutorial.api import (
     query_params,
     request_body,
     example_declaration,
+    status_code,
     validation,
     header_params,
     response_model,
     extra_models,
+    form_and_files,
 )
 
 app = FastAPI(
@@ -41,3 +43,7 @@ app.include_router(
     response_model.router, prefix="/responsemodel", tags=["Response Model"]
 )
 app.include_router(extra_models.router, prefix="/extramodels", tags=["Extra Models"])
+app.include_router(status_code.router, prefix="/statuscode", tags=["Status Code"])
+app.include_router(
+    form_and_files.router, prefix="/formandfiles", tags=["Form and Files"]
+)
