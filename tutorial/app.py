@@ -1,8 +1,11 @@
 # coding=utf-8
 
 from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from tutorial.api import (
+    errors,
     path_params,
     query_params,
     request_body,
@@ -47,3 +50,17 @@ app.include_router(status_code.router, prefix="/statuscode", tags=["Status Code"
 app.include_router(
     form_and_files.router, prefix="/formandfiles", tags=["Form and Files"]
 )
+app.include_router(errors.router, prefix="/errors", tags=["Handle Errors"])
+
+app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
+
+# Override the default error handlers
+# Override the default request validation handler, use fastapi.exceptions.RequestValidationError
+# https://fastapi.tiangolo.com/tutorial/handling-errors/#requestvalidationerror-vs-validationerror
+app.add_exception_handler(
+    RequestValidationError, errors.request_validation_error_handler
+)
+
+# Override the default http exception handler, use starlette.exceptions.HTTPException
+# https://fastapi.tiangolo.com/tutorial/handling-errors/#fastapis-httpexception-vs-starlettes-httpexception
+app.add_exception_handler(StarletteHTTPException, errors.http_exception_handler)
