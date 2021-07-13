@@ -39,7 +39,7 @@ def http_exception_handler(request: Request, exc: StarletteHTTPException):
         content={
             "confused": exc.detail,
         },
-        headers=exc.headers
+        headers=getattr(exc, "headers", {})
         | {
             "X-Info": "This is returned by custom handler in tutorial.api.errors",
         },
