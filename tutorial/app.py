@@ -17,6 +17,7 @@ from tutorial.api import (
     extra_models,
     form_and_files,
     path_configuration_operation,
+    body_updates,
 )
 
 app = FastAPI(
@@ -53,7 +54,9 @@ app.include_router(
 )
 app.include_router(errors.router, prefix="/errors", tags=["Handle Errors"])
 app.include_router(path_configuration_operation.router, prefix="/pathconfigops")
-
+app.include_router(
+    body_updates.router, prefix="/updatebody", tags=["Jsonable encoder and update body"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
