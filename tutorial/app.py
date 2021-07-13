@@ -16,6 +16,7 @@ from tutorial.api import (
     response_model,
     extra_models,
     form_and_files,
+    path_configuration_operation,
 )
 
 app = FastAPI(
@@ -51,6 +52,8 @@ app.include_router(
     form_and_files.router, prefix="/formandfiles", tags=["Form and Files"]
 )
 app.include_router(errors.router, prefix="/errors", tags=["Handle Errors"])
+app.include_router(path_configuration_operation.router, prefix="/pathconfigops")
+
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
