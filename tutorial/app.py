@@ -5,6 +5,7 @@ from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from tutorial.api import (
+    dependencies,
     errors,
     path_params,
     query_params,
@@ -57,6 +58,7 @@ app.include_router(path_configuration_operation.router, prefix="/pathconfigops")
 app.include_router(
     body_updates.router, prefix="/updatebody", tags=["Jsonable encoder and update body"]
 )
+app.include_router(dependencies.router, prefix="/dependencies", tags=["Dependencies"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
