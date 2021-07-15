@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -59,6 +59,12 @@ app.include_router(
     body_updates.router, prefix="/updatebody", tags=["Jsonable encoder and update body"]
 )
 app.include_router(dependencies.router, prefix="/dependencies", tags=["Dependencies"])
+app.include_router(
+    dependencies.global_dependency_router,
+    prefix="/globaldependencies",
+    dependencies=[Depends(dependencies.verify_token)],
+    tags=["Dependencies"],
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
