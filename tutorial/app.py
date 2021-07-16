@@ -11,6 +11,7 @@ from tutorial.api import (
     query_params,
     request_body,
     example_declaration,
+    security,
     status_code,
     validation,
     header_params,
@@ -65,6 +66,7 @@ app.include_router(
     dependencies=[Depends(dependencies.verify_token)],
     tags=["Dependencies"],
 )
+app.include_router(security.router, prefix="/security", tags=["Security"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
