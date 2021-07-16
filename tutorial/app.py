@@ -12,6 +12,7 @@ from tutorial.api import (
     request_body,
     example_declaration,
     security,
+    security_jwt,
     status_code,
     validation,
     header_params,
@@ -67,6 +68,9 @@ app.include_router(
     tags=["Dependencies"],
 )
 app.include_router(security.router, prefix="/security", tags=["Security"])
+app.include_router(
+    security_jwt.router, prefix="/securityjwt", tags=["JWT Security Example"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
