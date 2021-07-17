@@ -3,10 +3,12 @@
 from fastapi import FastAPI, Depends
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from tutorial.api import (
     dependencies,
     errors,
+    middleware,
     path_params,
     query_params,
     request_body,
@@ -71,6 +73,7 @@ app.include_router(security.router, prefix="/security", tags=["Security"])
 app.include_router(
     security_jwt.router, prefix="/securityjwt", tags=["JWT Security Example"]
 )
+app.include_router(middleware.router, prefix="/middleware", tags=["Middleware"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
@@ -84,3 +87,5 @@ app.add_exception_handler(
 # Override the default http exception handler, use starlette.exceptions.HTTPException
 # https://fastapi.tiangolo.com/tutorial/handling-errors/#fastapis-httpexception-vs-starlettes-httpexception
 app.add_exception_handler(StarletteHTTPException, errors.http_exception_handler)
+
+app.add_middleware(BaseHTTPMiddleware, dispatch=middleware.add_process_time_header)
