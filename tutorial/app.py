@@ -4,6 +4,7 @@ from fastapi import FastAPI, Depends
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 from tutorial.api import (
     dependencies,
@@ -29,8 +30,8 @@ app = FastAPI(
     title="FastAPI Tutorial",
     description="A FastAPI application written by following tutorial in FastAPI Documents.",
     openapi_url="/help/v1/openapi.json",
-    docs_url="/help/docs",
-    redoc_url="/help/redoc",
+    docs_url="/",
+    redoc_url="/redoc",
 )
 
 
@@ -89,3 +90,10 @@ app.add_exception_handler(
 app.add_exception_handler(StarletteHTTPException, errors.http_exception_handler)
 
 app.add_middleware(BaseHTTPMiddleware, dispatch=middleware.add_process_time_header)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://baidu1234.github.io"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
