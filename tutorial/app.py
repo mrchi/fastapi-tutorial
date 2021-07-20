@@ -7,6 +7,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 
 from tutorial.api import (
+    apirouter_sub_include,
     dependencies,
     errors,
     middleware,
@@ -75,6 +76,16 @@ app.include_router(
     security_jwt.router, prefix="/securityjwt", tags=["JWT Security Example"]
 )
 app.include_router(middleware.router, prefix="/middleware", tags=["Middleware"])
+
+# Make sure you do it before including router in the FastAPI app
+# so that the path operations from other_router are also included
+# https://fastapi.tiangolo.com/tutorial/bigger-applications/
+apirouter_sub_include.router.include_router(
+    apirouter_sub_include.sub_router, prefix="/subrouter"
+)
+app.include_router(
+    apirouter_sub_include.router, prefix="/router", tags=["APIRouter sub include"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
