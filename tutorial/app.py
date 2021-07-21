@@ -8,6 +8,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from tutorial.api import (
     apirouter_sub_include,
+    background_task,
     dependencies,
     errors,
     middleware,
@@ -85,6 +86,10 @@ apirouter_sub_include.router.include_router(
 )
 app.include_router(
     apirouter_sub_include.router, prefix="/router", tags=["APIRouter sub include"]
+)
+
+app.include_router(
+    background_task.router, prefix="/backgroundtask", tags=["Background Task"]
 )
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
