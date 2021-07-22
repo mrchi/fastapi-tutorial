@@ -28,12 +28,26 @@ from tutorial.api import (
     body_updates,
 )
 
+# The order of each tag metadata dictionary also defines the order shown in the docs UI.
+tags_metadata = [
+    {
+        "name": "Index",
+        "description": "Index page description, defined by `FastAPI.openapi_tags`.",
+        "externalDocs": {
+            "description": "External FastAPI Docment",
+            "url": "https://fastapi.tiangolo.com/",
+        },
+    }
+]
+
 app = FastAPI(
     title="FastAPI Tutorial",
     description="A FastAPI application written by following tutorial in FastAPI Documents.",
+    version="0.1.0",
     openapi_url="/help/v1/openapi.json",
     docs_url="/",
-    redoc_url="/redoc",
+    redoc_url=None,  # disabled
+    openapi_tags=tags_metadata,
 )
 
 
