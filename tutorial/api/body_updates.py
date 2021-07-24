@@ -30,7 +30,7 @@ items = {
 }
 
 
-@router.post("/heidi/", summary="jsonable_encoder")
+@router.post("/heidi", summary="jsonable_encoder")
 def heidi(item: Item):
     return {"item": jsonable_encoder(item)}
 

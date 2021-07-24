@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/themonkeyking/",
+    "/themonkeyking",
     status_code=status.HTTP_418_IM_A_TEAPOT,
     summary="Custom status code",
 )

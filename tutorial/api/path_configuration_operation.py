@@ -6,7 +6,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/eatdrinkmenwomen/",
+    "/eatdrinkmenwomen",
     summary="Path Operation Configuration",
     tags=["Path Operation Configuration"],
     response_description="This is a response descrition.",

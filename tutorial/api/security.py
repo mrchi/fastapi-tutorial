@@ -45,17 +45,17 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     return User(**user_data)
 
 
-@router.get("/shutterisland/", summary="OAuth2 password flow protect")
+@router.get("/shutterisland", summary="OAuth2 password flow protect")
 def shutter_island(token: str = Depends(oauth2_scheme)):
     return {"token": token}
 
 
-@router.get("/users/me/", summary="Get current user")
+@router.get("/users/me", summary="Get current user")
 def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user
 
 
-@router.post("/token/", summary="OAuth2 password flow login")
+@router.post("/token", summary="OAuth2 password flow login")
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
     user_dict = fake_users_db.get(form_data.username)
     if not user_dict:

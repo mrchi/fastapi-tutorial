@@ -14,7 +14,7 @@ def client():
 @pytest.fixture
 def access_token(client):
     resp = client.post(
-        "/securityjwt/token/",
+        "/securityjwt/token",
         data={"username": "johndoe", "password": "secret"},
     )
     # assert resp.status_code == 200

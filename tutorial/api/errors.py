@@ -47,7 +47,7 @@ def http_exception_handler(request: Request, exc: StarletteHTTPException):
     )
 
 
-@router.get("/teapot/", summary="Raise HTTPException")
+@router.get("/teapot", summary="Raise HTTPException")
 def teapot():
     raise HTTPException(
         status_code=status.HTTP_418_IM_A_TEAPOT,
@@ -57,7 +57,7 @@ def teapot():
 
 
 @router.get(
-    "/deadpoetssociety/",
+    "/deadpoetssociety",
     summary="Custom exception handler",
     description="Error handler function is defined in `tutorial.app`.",
 )
@@ -66,7 +66,7 @@ def dead_poets_society(name: str):
 
 
 @router.get(
-    "/fightclub/",
+    "/fightclub",
     summary="Override request validation error by fastapi.exceptions.RequestValidationError",
     description="Visit [this link](/errors/fightclub/?name=abc) to test.",
 )
@@ -75,7 +75,7 @@ def fight_club(name: int = "abc"):
 
 
 @router.get(
-    "/thematrix/",
+    "/thematrix",
     summary="Override http exception by starlette.exceptions.HTTPException",
 )
 def the_matrix():
@@ -87,7 +87,7 @@ def the_matrix():
 
 
 @router.get(
-    "/greenbook/",
+    "/greenbook",
     summary="Re-use FastAPI's exception handlers",
     description="Not a example API, but just show the handlers' path in response.",
 )

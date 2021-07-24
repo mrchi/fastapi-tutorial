@@ -55,14 +55,14 @@ items = {
 }
 
 
-@router.post("/thetwotower/", response_model=UserOut, summary="Multiple models")
+@router.post("/thetwotower", response_model=UserOut, summary="Multiple models")
 def the_two_tower(user: UserIn):
     user_saved = UserDB(**user.dict(), hashed_password=user.password + "secret")
     return user_saved
 
 
 @router.get(
-    "/theromanholiday/",
+    "/theromanholiday",
     response_model=Union[CarItem, PlaneItem],
     summary="Declare multiple types reponse",
 )
@@ -71,7 +71,7 @@ def the_roman_holiday(item_id: str):
 
 
 @router.get(
-    "/catchmeifyoucan/",
+    "/catchmeifyoucan",
     response_model=dict[str, float],
     summary="Arbitrary dict response",
 )

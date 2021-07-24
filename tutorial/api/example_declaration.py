@@ -33,12 +33,12 @@ class Image(BaseModel):
     url: Optional[HttpUrl] = None
 
 
-@router.post("/coco/", summary="Declare request example in Field and Model")
+@router.post("/coco", summary="Declare request example in Field and Model")
 def coco(user: User, item: Item):
     return {"user": user, "item": item}
 
 
-@router.post("/lifetimes/", summary="Declare request example in Body")
+@router.post("/lifetimes", summary="Declare request example in Body")
 def lifetimes(
     image: Image = Body(
         ...,
@@ -49,7 +49,7 @@ def lifetimes(
 
 
 @router.post(
-    "/lordofring/",
+    "/lordofring",
     summary="Declare multiple examples",
     description=(
         "examples is **NOT** working.\n\n"

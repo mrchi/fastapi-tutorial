@@ -36,7 +36,7 @@ tags_metadata = [
         "description": "Index page description, defined by `FastAPI.openapi_tags`.",
         "externalDocs": {
             "description": "External FastAPI Docment",
-            "url": "https://fastapi.tiangolo.com/",
+            "url": "https://fastapi.tiangolo.com",
         },
     }
 ]

@@ -9,7 +9,7 @@ from fastapi import APIRouter, Body
 router = APIRouter()
 
 
-@router.get("/harrypotter/", summary="Extra Python data types in query parameters")
+@router.get("/harrypotter", summary="Extra Python data types in query parameters")
 def harry_potter(
     id: UUID = uuid4(),
     datetime_: datetime = datetime(2021, 1, 1, 23, 59, 59, 123),
@@ -34,7 +34,7 @@ def harry_potter(
     }
 
 
-@router.post("/up/", summary="Extra Python data types in request body")
+@router.post("/up", summary="Extra Python data types in request body")
 def up(
     fronzenset_: frozenset = Body(frozenset({"iOS", "Android", "iOS"})),
 ):

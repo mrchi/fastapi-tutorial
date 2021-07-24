@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/dangal/",
+    "/dangal",
     summary="Cookie parameter",
     description="Request is incorrect in swagger UI.",
 )
@@ -16,7 +16,7 @@ def dangal(uid: Optional[str] = Cookie(None)):
 
 
 @router.get(
-    "/lifeofpi/",
+    "/lifeofpi",
     summary="Header parameter",
     description="Request is incorrect in swagger UI.",
 )

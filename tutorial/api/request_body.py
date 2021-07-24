@@ -62,7 +62,7 @@ class MultiImageGallery(BaseModel):
     galleries: Optional[list[ImageGallery]] = None
 
 
-@router.post("/items/", summary="JSON body parameter")
+@router.post("/items", summary="JSON body parameter")
 def create_item(item: Item):
     resp = item.dict()
     if item.tax is not None:
@@ -87,33 +87,33 @@ def update_item(item_id: int, item: Item, confirm: bool = True):
     }
 
 
-@router.post("/item_with_owner/", summary="Multiple body parameters")
+@router.post("/item_with_owner", summary="Multiple body parameters")
 def create_item_with_owner(item: Item, owner: User):
     return {"item": item, "owner": owner}
 
 
-@router.post("/1900/", summary="Singular values in body parameter")
+@router.post("/1900", summary="Singular values in body parameter")
 def pinao_genius(item: Optional[Item] = None, importance: str = Body(...)):
     return {"item": item, "importance": importance}
 
 
-@router.post("/3idiots/", summary="Embed a single body parameter")
+@router.post("/3idiots", summary="Embed a single body parameter")
 def aamir_khan(item: Item = Body(..., embed=True)):
     return {"item": item}
 
 
-@router.post("/walle/", summary="Model field with extra information")
+@router.post("/walle", summary="Model field with extra information")
 def build_walle(robot: Robot):
     return {"robot": robot}
 
 
-@router.post("/zootopia/", summary="Nested models")
+@router.post("/zootopia", summary="Nested models")
 def arrest_animal(animal: Animal):
     return {"animal": animal}
 
 
 @router.post(
-    "/connection/", summary="Special types and validation", tags=["Validation"]
+    "/connection", summary="Special types and validation", tags=["Validation"]
 )
 def create_new_connection(
     conn: Connection,
@@ -122,16 +122,16 @@ def create_new_connection(
     return {"conn": conn, "redis": redis}
 
 
-@router.post("/darknight/", summary="Deeply nested models")
+@router.post("/darknight", summary="Deeply nested models")
 def dark_knight(gallery: MultiImageGallery):
     return {"gallery": gallery}
 
 
-@router.post("/images/", summary="Bodies of pure lists")
+@router.post("/images", summary="Bodies of pure lists")
 def create_images(images: list[Image]):
     return {"images": images}
 
 
-@router.post("/emperors/", summary="Bodies of arbitrary dicts")
+@router.post("/emperors", summary="Bodies of arbitrary dicts")
 def arbirary_dicts(emperors: dict[int, str]):
     return {"emperors": emperors}

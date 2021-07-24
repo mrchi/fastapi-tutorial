@@ -72,28 +72,28 @@ class CommonParams:
         self.offset = offset
 
 
-@router.get("/loveletter/", summary="Functions as dependencies")
+@router.get("/loveletter", summary="Functions as dependencies")
 def love_letter(commons: dict = Depends(common_parameters)):
     return commons
 
 
-@router.get("/contratiempo/", summary="Classes as dependencies")
+@router.get("/contratiempo", summary="Classes as dependencies")
 def contratiempo(commons: CommonParams = Depends(CommonParams)):
     return commons
 
 
-@router.get("/stripedpajamas/", summary="Shortcuts of classes as dependencies")
+@router.get("/stripedpajamas", summary="Shortcuts of classes as dependencies")
 def striped_pajamas(commons: CommonParams = Depends()):
     return commons
 
 
-@router.get("/malena/", summary="Sub dependencies")
+@router.get("/malena", summary="Sub dependencies")
 def malena(more_commons: dict = Depends(more_common_parameters)):
     return more_commons
 
 
 @router.get(
-    "/savingprivateryan/",
+    "/savingprivateryan",
     summary="Disable cache when using the same dependency multiple times",
 )
 def save_private_ryan(commons: dict = Depends(fresh_common_parameters)):
@@ -101,7 +101,7 @@ def save_private_ryan(commons: dict = Depends(fresh_common_parameters)):
 
 
 @router.get(
-    "/thesoundofmusic/",
+    "/thesoundofmusic",
     dependencies=[Depends(verify_key), Depends(verify_token)],
     summary="Dependencies in path operation decorators",
 )
@@ -110,7 +110,7 @@ def the_sound_of_music():
 
 
 @global_dependency_router.get(
-    "/avatar/",
+    "/avatar",
     summary="Global Dependencies",
     description="See `app.include_router(dependencies=[...])` in `tutorial.app`, or you can use `FastApi(dependencies=[...])`",
 )
@@ -118,7 +118,7 @@ def avatar():
     return {"foo": "bar"}
 
 
-@router.get("/thecove/", summary="Dependencies with yield")
+@router.get("/thecove", summary="Dependencies with yield")
 def the_cove(db: str = Depends(get_db)):
     print("the_cove.start")
     print(f"the_cove.db: {db}")
@@ -126,7 +126,7 @@ def the_cove(db: str = Depends(get_db)):
     return {"db": db}
 
 
-@router.get("/theprestige/", summary="Dependencies with yield and try")
+@router.get("/theprestige", summary="Dependencies with yield and try")
 def the_prestige(db: str = Depends(get_db_with_try)):
     print("the_prestige.start")
     print(f"the_prestige.db: {db}")

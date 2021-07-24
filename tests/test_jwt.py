@@ -3,7 +3,7 @@
 
 def test_login_protection(client, access_token):
     resp = client.get(
-        "/securityjwt/users/me/",
+        "/securityjwt/users/me",
         data={"username": "johndoe", "password": "secret"},
         headers={"Authorization": f"Bearer {access_token}"},
     )

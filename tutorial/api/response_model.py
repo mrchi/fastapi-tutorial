@@ -29,13 +29,13 @@ class UserOut(BaseModel):
     fullname: Optional[str] = None
 
 
-@router.post("/12angrymen/", response_model=Item, summary="Response model")
+@router.post("/12angrymen", response_model=Item, summary="Response model")
 def twelve_angry_men(item: Item):
     return item
 
 
 @router.post(
-    "/users/",
+    "/users",
     response_model=UserOut,
     summary="Different individual request model and response model",
 )
@@ -44,7 +44,7 @@ def create_user(user: UserIn):
 
 
 @router.post(
-    "/devils/",
+    "/devils",
     response_model=Item,
     response_model_exclude_unset=True,
     summary="response_model_exclude_unset",
@@ -54,7 +54,7 @@ def devils(item: Item = Body(..., example={"name": "Tank", "price": 40.0})):
 
 
 @router.post(
-    "/dahuaxiyou/",
+    "/dahuaxiyou",
     response_model=Item,
     response_model_exclude_defaults=True,
     summary="response_model_exclude_defaults",
@@ -66,7 +66,7 @@ def dahuaxiyou(
 
 
 @router.post(
-    "/castleinthesky/",
+    "/castleinthesky",
     response_model=Item,
     response_model_exclude_none=True,
     summary="response_model_exclude_none",
@@ -76,7 +76,7 @@ def castleinthesky(item: Item = Body(..., example={"name": "Tank", "price": 40.0
 
 
 @router.post(
-    "/paradiso/",
+    "/paradiso",
     response_model=Item,
     response_model_exclude={"price", "name"},
     summary="response_model_exclude",
@@ -86,7 +86,7 @@ def paradiso(item: Item = Body(..., example={"name": "Tank", "price": 40.0})):
 
 
 @router.post(
-    "/scentofawomen/",
+    "/scentofawomen",
     response_model=Item,
     response_model_include={"tags"},
     summary="response_model_include",

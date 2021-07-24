@@ -15,7 +15,7 @@ JWT_ALGORITHM = "HS256"
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/securityjwt/token/")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/securityjwt/token")
 
 fake_users_db = {
     "johndoe": {
@@ -86,7 +86,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     return user
 
 
-@router.post("/token/", response_model=Token, summary="Login for access token")
+@router.post("/token", response_model=Token, summary="Login for access token")
 def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
@@ -99,6 +99,6 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@router.get("/users/me/", response_model=User, summary="Protected by JWT access token")
+@router.get("/users/me", response_model=User, summary="Protected by JWT access token")
 def read_users_me(current_user: User = Depends(get_current_user)):
     return current_user

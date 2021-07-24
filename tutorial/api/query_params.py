@@ -7,18 +7,18 @@ from fastapi import APIRouter, Query
 router = APIRouter()
 
 
-@router.get("/items/", summary="Query parameter with default value")
+@router.get("/items", summary="Query parameter with default value")
 def get_items(limit: int = 10, offset: int = 0):
     return {"limit": limit, "offset": offset}
 
 
-@router.get("/products/", summary="Required and optional query parameter")
+@router.get("/products", summary="Required and optional query parameter")
 def search_products(category: str, keyword: Optional[str] = None):
     return {"category": category, "keyword": keyword}
 
 
 @router.get(
-    "/shawshank/",
+    "/shawshank",
     summary="Bool type query parameter",
     description="Try to use yes/no, on/off, 0/1, True/False as value.",
 )
@@ -27,7 +27,7 @@ def search_shawshank(innocent: bool = False):
 
 
 @router.get(
-    "/concubines/",
+    "/concubines",
     summary="Query parameter with additional validation",
     tags=["Validation"],
 )
@@ -45,7 +45,7 @@ def search_concubines(
     return {"hh": hh, "hhmm": hhmm}
 
 
-@router.get("/titanic/", summary="Query parameter list / multiple value")
+@router.get("/titanic", summary="Query parameter list / multiple value")
 def show_titanic(
     actors: Optional[list[str]] = Query(None),
     roles: list[str] = Query(["Jack", "Rose"]),
@@ -53,7 +53,7 @@ def show_titanic(
     return {"actors": actors, "roles": roles}
 
 
-@router.get("/schindler/", summary="Query parameter with metadata")
+@router.get("/schindler", summary="Query parameter with metadata")
 def get_schindler_list(
     name: Optional[str] = Query(
         None,
@@ -65,14 +65,14 @@ def get_schindler_list(
     return {"name": name}
 
 
-@router.get("/inception/", summary="Alias query parameter")
+@router.get("/inception", summary="Alias query parameter")
 def show_inception(
     ring: str = Query("darry ring", alias="wedding-ring"),
 ):
     return {"ring": ring}
 
 
-@router.get("/hachi/", summary="Deprecated query parameter")
+@router.get("/hachi", summary="Deprecated query parameter")
 def get_tale_of_hachi(
     professor: Optional[str] = Query(None, deprecated=True),
 ):

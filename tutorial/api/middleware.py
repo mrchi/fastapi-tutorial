@@ -17,13 +17,13 @@ async def add_process_time_header(request: Request, call_next):
     return response
 
 
-@router.get("/http_middleware/", summary="Custom HTTP middleware example")
+@router.get("/http_middleware", summary="Custom HTTP middleware example")
 def middleware_example():
     return {"msg": "Check X-Process-Time header."}
 
 
 @router.get(
-    "/cors/",
+    "/cors",
     summary="CORS middleware example",
     description=(
         "See tutorial.app. "

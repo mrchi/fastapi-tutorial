@@ -5,18 +5,18 @@ from fastapi import APIRouter, Form, File, UploadFile
 router = APIRouter()
 
 
-@router.post("/thepianist/", summary="Form parameters")
+@router.post("/thepianist", summary="Form parameters")
 def the_pianist(username: str = Form(...)):
     return {"username": username}
 
 
-@router.post("/file/", summary="File parameter")
+@router.post("/file", summary="File parameter")
 def create_file(file: bytes = File(...)):
     return {"file_size": len(file)}
 
 
 @router.post(
-    "/uploadfile/",
+    "/uploadfile",
     summary="File parameter with UploadFile",
     description="UploadFile uses a `spooled` file, after filesize passing the limit it will be stored in disk.",
 )
@@ -30,18 +30,18 @@ async def create_upload_file(file: UploadFile = File(...)):
     }
 
 
-@router.post("/files/", summary="Multiple File parameters")
+@router.post("/files", summary="Multiple File parameters")
 def create_multiple_files(files: list[bytes] = File(...)):
     return {"file_sizes": [len(i) for i in files]}
 
 
-@router.post("/uploadfiles/", summary="Multiple File parameters with UploadFile")
+@router.post("/uploadfiles", summary="Multiple File parameters with UploadFile")
 def create_multiple_upload_files(files: list[UploadFile] = File(...)):
     return {"file_names": [i.filename for i in files]}
 
 
 @router.post(
-    "/thelionking/",
+    "/thelionking",
     summary="Request form and files",
     description="Need to declare `File` parameters before `Form` parameters!",
 )
