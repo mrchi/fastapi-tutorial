@@ -112,9 +112,7 @@ def arrest_animal(animal: Animal):
     return {"animal": animal}
 
 
-@router.post(
-    "/connection", summary="Special types and validation", tags=["Validation"]
-)
+@router.post("/connection", summary="Special types and validation", tags=["Validation"])
 def create_new_connection(
     conn: Connection,
     redis: RedisDsn = Body(...),
