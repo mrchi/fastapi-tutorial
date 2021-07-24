@@ -13,6 +13,7 @@ from tutorial.api import (
     dependencies,
     errors,
     middleware,
+    path_operation_advanced_configuration,
     path_params,
     query_params,
     request_body,
@@ -106,6 +107,12 @@ app.include_router(
 app.include_router(
     background_task.router, prefix="/backgroundtask", tags=["Background Task"]
 )
+app.include_router(
+    path_operation_advanced_configuration.router,
+    prefix="/pathoperationadvancedconf",
+    tags=["Path operation advanced configuration"],
+)
+
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
