@@ -18,6 +18,7 @@ from tutorial.api import (
     query_params,
     request_body,
     example_declaration,
+    return_response,
     security,
     security_jwt,
     status_code,
@@ -112,7 +113,9 @@ app.include_router(
     prefix="/pathoperationadvancedconf",
     tags=["Path operation advanced configuration"],
 )
-
+app.include_router(
+    return_response.router, prefix="/returnresp", tags=["Return Responses Directly"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
