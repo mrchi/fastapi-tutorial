@@ -10,6 +10,7 @@ from starlette.middleware.cors import CORSMiddleware
 from tutorial.api import (
     apirouter_sub_include,
     background_task,
+    custom_response,
     dependencies,
     errors,
     middleware,
@@ -115,6 +116,9 @@ app.include_router(
 )
 app.include_router(
     return_response.router, prefix="/returnresp", tags=["Return Responses Directly"]
+)
+app.include_router(
+    custom_response.router, prefix="/customresp", tags=["Custom Responses"]
 )
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
