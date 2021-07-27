@@ -8,6 +8,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 
 from tutorial.api import (
+    additional_response,
     apirouter_sub_include,
     background_task,
     custom_response,
@@ -119,6 +120,9 @@ app.include_router(
 )
 app.include_router(
     custom_response.router, prefix="/customresp", tags=["Custom Responses"]
+)
+app.include_router(
+    additional_response.router, prefix="/additionalresp", tags=["Additional Response"]
 )
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
