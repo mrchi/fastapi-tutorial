@@ -20,6 +20,7 @@ from tutorial.api import (
     query_params,
     request_body,
     example_declaration,
+    response_parameter,
     return_response,
     security,
     security_jwt,
@@ -123,6 +124,9 @@ app.include_router(
 )
 app.include_router(
     additional_response.router, prefix="/additionalresp", tags=["Additional Response"]
+)
+app.include_router(
+    response_parameter.router, prefix="/responseparam", tags=["Response parameter"]
 )
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
