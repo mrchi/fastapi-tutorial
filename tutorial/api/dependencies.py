@@ -143,3 +143,19 @@ def lambs(db: str = Depends(get_db_with_http_exception)):
         "db": db,
         "msg": "It's useless to raise HTTPException after yield in dependencies.",
     }
+
+
+class FixedContentQueryChecker:
+    def __init__(self, fixed_content) -> None:
+        self.fixed_content = fixed_content
+
+    def __call__(self, q: str = "foobar"):
+        return self.fixed_content in q
+
+
+checker = FixedContentQueryChecker("bar")
+
+
+@router.get("/parameterized", summary="Parameterized dependency")
+def parameterized(fixed_content_included: bool = Depends(checker)):
+    return {"fixed_content_in_query": fixed_content_included}
