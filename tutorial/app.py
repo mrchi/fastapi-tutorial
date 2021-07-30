@@ -20,6 +20,7 @@ from tutorial.api import (
     query_params,
     request_body,
     example_declaration,
+    request_object,
     response_parameter,
     return_response,
     security,
@@ -128,6 +129,7 @@ app.include_router(
 app.include_router(
     response_parameter.router, prefix="/responseparam", tags=["Response parameter"]
 )
+app.include_router(request_object.router, prefix="/request", tags=["Request object"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
