@@ -6,6 +6,10 @@ from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
+from starlette.middleware.trustedhost import TrustedHostMiddleware
+from starlette.middleware.gzip import GZipMiddleware
+
+# from starlette.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 from tutorial.api import (
     additional_response,
@@ -156,5 +160,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost"])
+app.add_middleware(GZipMiddleware, minimum_size=10)
+# app.add_middleware(HTTPSRedirectMiddleware)
 
 app.mount("/static", StaticFiles(directory="tutorial/static"), name="static")

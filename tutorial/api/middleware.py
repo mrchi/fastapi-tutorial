@@ -36,3 +36,25 @@ def cors_example(origin: str = Header(...)):
         "msg": "Check response header access-control-allow-*",
         "origin": origin,
     }
+
+
+@router.get(
+    "/trustedhost",
+    summary="TrustedHostMiddleware example",
+    description=(
+        "See tutorial.app. "
+        "request with header is incorrect in swagger UI, "
+        "Test with curl or httpie."
+    ),
+)
+def trusted_host_example(host: str = Header(...)):
+    return {"host": host}
+
+
+@router.get(
+    "/gzip",
+    summary="GZipMiddleware example",
+    description="See tutorial.app. But test not worked correctly, GZipResponder.send_with_gzip goes info else",
+)
+def gzip(accept_encoding: str = Header("gzip")):
+    return "abcdefghijklmnopqrst"
