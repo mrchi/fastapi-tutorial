@@ -26,6 +26,7 @@ from tutorial.api import (
     security,
     security_jwt,
     status_code,
+    use_dataclasses,
     validation,
     header_params,
     response_model,
@@ -130,6 +131,9 @@ app.include_router(
     response_parameter.router, prefix="/responseparam", tags=["Response parameter"]
 )
 app.include_router(request_object.router, prefix="/request", tags=["Request object"])
+app.include_router(
+    use_dataclasses.router, prefix="/dataclasses", tags=["Use dataclasses"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
