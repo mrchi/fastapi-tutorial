@@ -19,6 +19,7 @@ from tutorial.api import (
     dependencies,
     errors,
     middleware,
+    nosql_database,
     path_operation_advanced_configuration,
     path_params,
     query_params,
@@ -138,6 +139,7 @@ app.include_router(request_object.router, prefix="/request", tags=["Request obje
 app.include_router(
     use_dataclasses.router, prefix="/dataclasses", tags=["Use dataclasses"]
 )
+app.include_router(nosql_database.router, prefix="/nosql", tags=["NoSQL Database"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
