@@ -40,6 +40,7 @@ from tutorial.api import (
     path_configuration_operation,
     body_updates,
 )
+from tutorial.subapp import admin
 
 # The order of each tag metadata dictionary also defines the order shown in the docs UI.
 tags_metadata = [
@@ -55,7 +56,10 @@ tags_metadata = [
 
 app = FastAPI(
     title="FastAPI Tutorial",
-    description="A FastAPI application written by following tutorial in FastAPI Documents.",
+    description=(
+        "A FastAPI application written by following tutorial in FastAPI Documents.\n\n"
+        "There is a subapp on [/admin/](/admin/)"
+    ),
     version="0.1.0",
     openapi_url="/help/v1/openapi.json",
     docs_url="/",
@@ -167,3 +171,5 @@ app.add_middleware(GZipMiddleware, minimum_size=10)
 # app.add_middleware(HTTPSRedirectMiddleware)
 
 app.mount("/static", StaticFiles(directory="tutorial/static"), name="static")
+
+app.mount("/admin", admin.admin_app)
