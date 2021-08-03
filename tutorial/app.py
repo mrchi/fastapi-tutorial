@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -65,12 +65,31 @@ app = FastAPI(
     docs_url="/",
     redoc_url=None,  # disabled
     openapi_tags=tags_metadata,
+    # root_path="/proxy",
+    servers=[
+        {"url": "https://stag.example.com", "description": "Staging environment"},
+        {"url": "https://prod.example.com", "description": "Production environment"},
+    ],
+    # root_path_in_servers=False,
 )
 
 
 @app.get("/", tags=["Index"], summary="Hello, world!")
 async def index():
     return {"hello": "world"}
+
+
+@app.get(
+    "/rootpath",
+    tags=["Root path"],
+    summary="Print root path",
+    description=(
+        "Defined in `FastAPI().root_path`."
+        "It also could be set by command line option `--root-path` of uvicorn."
+    ),
+)
+def rootpath(req: Request):
+    return {"rootpath": req.scope.get("root_path")}
 
 
 app.include_router(path_params.router, prefix="/pathparams", tags=["Path Params"])
