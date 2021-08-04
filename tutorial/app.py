@@ -31,6 +31,7 @@ from tutorial.api import (
     security,
     security_jwt,
     status_code,
+    templates,
     use_dataclasses,
     validation,
     header_params,
@@ -67,6 +68,7 @@ app = FastAPI(
     openapi_tags=tags_metadata,
     # root_path="/proxy",
     servers=[
+        {"url": "", "description": "localhost"},
         {"url": "https://stag.example.com", "description": "Staging environment"},
         {"url": "https://prod.example.com", "description": "Production environment"},
     ],
@@ -163,6 +165,7 @@ app.include_router(
     use_dataclasses.router, prefix="/dataclasses", tags=["Use dataclasses"]
 )
 app.include_router(nosql_database.router, prefix="/nosql", tags=["NoSQL Database"])
+app.include_router(templates.router, prefix="/templates", tags=["Render Templates"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
