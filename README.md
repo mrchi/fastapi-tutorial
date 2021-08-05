@@ -6,3 +6,4 @@ A FastAPI application written by following Tutorial in FastAPI Documents.
 - [ ] Advanced Security
 - [ ] SQL (Relational) Databases with Peewee
 - [ ] Async SQL (Relational) Databases
+- [ ] GraphQL

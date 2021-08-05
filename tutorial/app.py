@@ -40,6 +40,7 @@ from tutorial.api import (
     form_and_files,
     path_configuration_operation,
     body_updates,
+    websockets,
 )
 from tutorial.subapp import admin
 
@@ -166,6 +167,7 @@ app.include_router(
 )
 app.include_router(nosql_database.router, prefix="/nosql", tags=["NoSQL Database"])
 app.include_router(templates.router, prefix="/templates", tags=["Render Templates"])
+app.include_router(websockets.router, prefix="/websockets", tags=["Websockets"])
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
