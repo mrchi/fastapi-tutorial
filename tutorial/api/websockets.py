@@ -1,6 +1,7 @@
 # coding=utf-8
 
-from fastapi import APIRouter
+from typing import Optional
+from fastapi import APIRouter, Cookie, Query, status
 from starlette.responses import HTMLResponse
 from starlette.websockets import WebSocket
 
@@ -52,3 +53,13 @@ async def websocket_api(ws: WebSocket):
     while True:
         data = await ws.receive_text()
         await ws.send_text(f"Message text was: {data}")
+
+
+async def get_cookie_or_token(
+    websocket: WebSocket,
+    session: Optional[str] = Cookie(None),
+    token: Optional[str] = Query(None),
+):
+    if session is None and token is None:
+        await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
+    return session or token
