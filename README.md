@@ -7,3 +7,4 @@ A FastAPI application written by following Tutorial in FastAPI Documents.
 - [ ] SQL (Relational) Databases with Peewee
 - [ ] Async SQL (Relational) Databases
 - [ ] GraphQL
+- [ ] Custom Request and APIRoute class
