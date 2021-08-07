@@ -190,7 +190,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost"])
+
+# TestClient use testserver
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=["localhost", "testserver"])
+
 app.add_middleware(GZipMiddleware, minimum_size=10)
 # app.add_middleware(HTTPSRedirectMiddleware)
 
