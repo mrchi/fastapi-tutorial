@@ -197,3 +197,18 @@ app.add_middleware(GZipMiddleware, minimum_size=10)
 app.mount("/static", StaticFiles(directory="tutorial/static"), name="static")
 
 app.mount("/admin", admin.admin_app)
+
+
+@app.on_event("startup")
+async def async_print_hello():
+    print("App startup and say hello.")
+
+
+@app.on_event("startup")
+def sync_print_world():
+    print("App startup and say world.")
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    print("App shutdown.")
