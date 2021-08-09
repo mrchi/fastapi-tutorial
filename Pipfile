@@ -16,6 +16,8 @@ flake8 = "*"
 black = "*"
 pytest = "*"
 coverage = "*"
+pytest-asyncio = "*"
+httpx = "*"
 
 [requires]
 python_version = "3.9"

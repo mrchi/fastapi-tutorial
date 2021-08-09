@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import pytest
+from httpx import AsyncClient
 from fastapi.testclient import TestClient
 
 from tutorial.app import app
@@ -9,6 +10,13 @@ from tutorial.app import app
 @pytest.fixture
 def client():
     return TestClient(app)
+
+
+@pytest.fixture
+@pytest.mark.asyncio
+async def async_client():
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        yield ac
 
 
 @pytest.fixture

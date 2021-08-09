@@ -8,3 +8,4 @@ A FastAPI application written by following Tutorial in FastAPI Documents.
 - [ ] Async SQL (Relational) Databases
 - [ ] GraphQL
 - [ ] Custom Request and APIRoute class
+- [ ] Testing a Database
