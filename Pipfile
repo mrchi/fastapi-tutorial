@@ -10,6 +10,7 @@ passlib = {extras = ["bcrypt"], version = "*"}
 arrow = "*"
 aiofiles = "*"
 pymongo = "*"
+python-dotenv = "*"
 
 [dev-packages]
 flake8 = "*"

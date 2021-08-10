@@ -23,6 +23,7 @@ from tutorial.api import (
     path_operation_advanced_configuration,
     path_params,
     query_params,
+    read_env_settings,
     request_body,
     example_declaration,
     request_object,
@@ -168,6 +169,8 @@ app.include_router(
 app.include_router(nosql_database.router, prefix="/nosql", tags=["NoSQL Database"])
 app.include_router(templates.router, prefix="/templates", tags=["Render Templates"])
 app.include_router(websockets.router, prefix="/websockets", tags=["Websockets"])
+app.include_router(read_env_settings.router, prefix="/setting", tags=["Settings"])
+
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
