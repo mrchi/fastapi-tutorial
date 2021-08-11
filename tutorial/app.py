@@ -65,6 +65,7 @@ app = FastAPI(
     ),
     version="0.1.0",
     openapi_url="/help/v1/openapi.json",
+    # openapi_url="",       # disable the API docs
     docs_url="/",
     redoc_url=None,  # disabled
     openapi_tags=tags_metadata,
