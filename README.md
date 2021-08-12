@@ -9,3 +9,4 @@ A FastAPI application written by following Tutorial in FastAPI Documents.
 - [ ] GraphQL
 - [ ] Custom Request and APIRoute class
 - [ ] Testing a Database
+- [ ] Extending OpenAPI
