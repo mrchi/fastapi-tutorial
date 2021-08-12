@@ -20,6 +20,7 @@ from tutorial.api import (
     errors,
     middleware,
     nosql_database,
+    openapi_callbacks,
     path_operation_advanced_configuration,
     path_params,
     query_params,
@@ -171,7 +172,9 @@ app.include_router(nosql_database.router, prefix="/nosql", tags=["NoSQL Database
 app.include_router(templates.router, prefix="/templates", tags=["Render Templates"])
 app.include_router(websockets.router, prefix="/websockets", tags=["Websockets"])
 app.include_router(read_env_settings.router, prefix="/setting", tags=["Settings"])
-
+app.include_router(
+    openapi_callbacks.router, prefix="/openapi_callbacks", tags=["OpenAPI Callbacks"]
+)
 
 app.add_exception_handler(errors.WestWorldException, errors.westworld_exception_handler)
 
