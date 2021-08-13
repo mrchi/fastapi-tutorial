@@ -4,6 +4,7 @@ from fastapi import FastAPI, Depends, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.middleware.wsgi import WSGIMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -43,6 +44,7 @@ from tutorial.api import (
     path_configuration_operation,
     body_updates,
     websockets,
+    wsgi,
 )
 from tutorial.subapp import admin
 
@@ -209,6 +211,7 @@ app.add_middleware(GZipMiddleware, minimum_size=10)
 app.mount("/static", StaticFiles(directory="tutorial/static"), name="static")
 
 app.mount("/admin", admin.admin_app)
+app.mount("/wsgi", WSGIMiddleware(wsgi.app))  # NOT showing in docs
 
 
 @app.on_event("startup")
